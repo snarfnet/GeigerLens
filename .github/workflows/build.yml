@@ -1,5 +1,6 @@
 name: Build & Upload TestFlight
 
+# GeigerLens CI: archive + upload to TestFlight via ASC API key
 on:
   workflow_dispatch:
 
