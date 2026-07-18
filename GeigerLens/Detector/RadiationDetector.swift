@@ -53,6 +53,17 @@ final class RadiationDetector: NSObject, ObservableObject {
         super.init()
     }
 
+    /// スクリーンショット撮影用のデモ表示（シミュレータではカメラが動かないため）。
+    func loadDemoState() {
+        isRunning = true
+        cpm = 42
+        microSievertPerHour = 0.24
+        totalCounts = 137
+        noiseFloor = 0.3
+        frameBrightness = 4
+        lastEventAt = Date()
+    }
+
     // MARK: - 起動 / 停止
     func start() {
         AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in

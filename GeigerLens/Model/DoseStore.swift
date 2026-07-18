@@ -40,6 +40,20 @@ final class DoseStore: ObservableObject {
         save()
     }
 
+    /// スクリーンショット撮影用のデモ履歴。永続化しない。
+    func loadDemoState() {
+        let now = Date()
+        records = [
+            DoseRecord(date: now.addingTimeInterval(-1800), durationSeconds: 312,
+                       totalCounts: 137, avgCpm: 42, maxCpm: 118, avgMicroSievertPerHour: 0.24),
+            DoseRecord(date: now.addingTimeInterval(-90000), durationSeconds: 605,
+                       totalCounts: 208, avgCpm: 21, maxCpm: 64, avgMicroSievertPerHour: 0.12),
+            DoseRecord(date: now.addingTimeInterval(-180000), durationSeconds: 180,
+                       totalCounts: 33, avgCpm: 11, maxCpm: 29, avgMicroSievertPerHour: 0.06),
+        ]
+        cumulativeMicroSievert = 0.83
+    }
+
     private func load() {
         let d = UserDefaults.standard
         if let data = d.data(forKey: recordsKey),
