@@ -110,7 +110,6 @@ final class RadiationDetector: NSObject, ObservableObject {
             let clampedDur = CMTimeCompare(dur, minDur) < 0 ? minDur : dur
             let iso = min(max(cam.activeFormat.minISO, 400), cam.activeFormat.maxISO)
             if cam.isExposureModeSupported(.custom) {
-                cam.setExposureModeCustomSampleBufferReadyHandler = nil
                 cam.setExposureModeCustom(duration: clampedDur, iso: iso, completionHandler: nil)
             }
             if cam.isWhiteBalanceModeSupported(.locked) { cam.whiteBalanceMode = .locked }
